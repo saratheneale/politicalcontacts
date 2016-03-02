@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vendors</title>
+
+  <script src="./assets/javascript/vendor/jquery.js"></script>
+  <script src="./assets/javascript/vendor/underscore.js"></script>
+  <script src="./assets/javascript/vendor/backbone.js"></script>
+  <script src="./assets/javascript/vendor/backbone.marionette.js"></script>
+  <script src="./assets/javascript/vendor/bootstrap.js"></script>
+
+  <script src="./assets/javascript/contacts.js"></script>
+  <script src="./assets/javascript/main.js"></script>
+
+  <link href="./assets/css/vendor/reset.css" rel="stylesheet">
+  <link href="./assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="./assets/css/custom.css" rel="stylesheet">
+  
+  <!--******** TEMPLATES ********-->
+  <!--Empty Contacts View -->
+  <script type="text/template" id="empty-contacts-view">
+    <div class="row">
+      <p class="loading"> Loading Vendors... </p>
+      <p class="empty-contacts">
+        Oops! It looks like there are no vendors in your contact list. 
+      </p>
+    </div>
+  </script>
+  
+  <!-- Contacts Layout -->
+  <script type="text/template" id="contacts-layout">
+    <div>
+      <div class="nav header">
+      <ul>
+        <li>
+          <h2 class="container title"> Contact List </h2>
+        </li>
+      </ul>
+      </div>
+      <div class="content-region container">
+      </div>
+    </div>
+  </script>
+
+ <!-- Contacts Composite View-->
+  <script type="text/template" id="contacts-view">
+
+  <style>
+
+  .rep .contact-item__inner-content{
+    width: 33%;
+    display: inline-block;
+  }
+
+  .rep .contact-item__inner-content{
+    border-radius: 10px;
+  }
+
+  .rep .l-contact-item__img-section{
+    margin-bottom:0;
+  }
+
+  .rep .l-contact-item__info{
+     height: auto; 
+    background-color: #eee;
+    padding: 10px;
+    padding-bottom: 20px;
+    margin-top: 0;
+  }
+  </style>
+    <div class="contacts-container row">
+    </div>
+<!---->
+<!---->
+<!---->
+<!---->
+<!-- The rep -->
+    <div class="row rep">
+      <div class="col-sm-12">
+
+        <div class="content text-center">
+          <div class="contact-item__inner-content l-contact-item__inner-content">
+
+            <div class="l-contact-item__img-section ">
+              
+              <div class="l-contact-item__img-section__profile-pic" style="background-image:url('https://s3.amazonaws.com/honeybook_cdn/assets_users_production/users/532b267c46ecaccbf1000143/profile_photos/2014-09-17-22-46-03-442.png')">
+
+              </div>
+              <img class='contact-item__img-section__vendor-icon l-contact-item__img-section__vendor-icon full-border img-responsive' src='https://pbs.twimg.com/profile_images/667437434720899074/jzH0I1Ka.png'>
+            </div>
+            <div class='contact-item__info l-contact-item__info'>
+              <h5 class='contact-item__info-name'>Aguilar</h5>
+              
+              <span class='contact-item__job'>  California</span>
+              <span class='company'>  Democrat </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--like and against-->
+<section class="row similars">
+  <div class="col-sm-6 text-center">
+  <div class="content for">
+    <h1>For</h1>
+
+    <div class="contact-item l-contact-item col-sm-5">
+    <div class="contact-item__inner-content l-contact-item__inner-content">
+
+        <div class="l-contact-item__img-section ">
+          
+          <div class="l-contact-item__img-section__profile-pic" style="background-image:url('https://s3.amazonaws.com/honeybook_cdn/assets_users_production/users/532b267c46ecaccbf1000143/profile_photos/2014-09-17-22-46-03-442.png')">
+
+          </div>
+          <img class='contact-item__img-section__vendor-icon l-contact-item__img-section__vendor-icon full-border img-responsive' src='https://pbs.twimg.com/profile_images/667437434720899074/jzH0I1Ka.png'>
+        </div>
+        <div class='contact-item__info l-contact-item__info'>
+          <h5 class='contact-item__info-name'> Jared </h5>
+          
+          <span class='contact-item__job'>  Independent</span>
+          <span class='company'>  BAMA </span>
+        </div>
+    </div>
+    </div>
+
+
+  </div>
+  </div>
+
+    <div class="col-sm-6 text-center">
+  <div class="content against">
+    <h1>Against</h1>
+  </div>
+  </div>
+
+
+</section>
+
+  </script>
+
+ <!-- Contact Item View-->
+  <script type="text/template" id="vendor-template">
+    <div class="contact-item l-contact-item col-md-3 col-sm-4 col-xs-6">
+    <div class="contact-item__inner-content l-contact-item__inner-content">
+
+        <div class="l-contact-item__img-section ">
+          
+          <div class="l-contact-item__img-section__profile-pic" style="background-image:url('<%= profile_image %>')">
+
+          </div>
+          <img class='contact-item__img-section__vendor-icon l-contact-item__img-section__vendor-icon full-border img-responsive' src='<%= icon %>'>
+        </div>
+        <div class='contact-item__info l-contact-item__info'>
+          <h5 class='contact-item__info-name'><%= name%></h5>
+          
+          <span class='contact-item__job'>  <%= job %></span>
+          <span class='company'>  <%= company_name %> </span>
+        </div>
+
+      <div class="hover-content l-hover-content">
+                <div class="hover-content__info">
+
+                  <h4><%= name%></h4>
+                  
+                  <span>  <%= job %></span>
+                  
+                  <br>
+                  
+                  <span>  <%= company_name %> </span>
+                  
+                  <br>
+
+                  <%= phone%>
+                  
+                  <br>
+                    <a href="mailto:<%= email%>"><%= email%> </a>
+
+                </div>
+        </div>  
+    </div>
+    </div>
+
+
+  </script>
+
+    
+</head>
+
+
+<body>
+  <div id="content">
+
+  </div>
+</body>
+</html>
